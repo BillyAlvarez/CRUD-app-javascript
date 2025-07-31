@@ -1,11 +1,13 @@
+import {localhostUserToModel} from "../mappers/localhost-user.mapper.js";
 
 
-export const loadUsersByPage = async (page = 1) => {
+export const loadUsersByPage = async ( page = 1 ) => {
 
-    const url = `${import.meta.env.VITE_BASE_URL}/users?page=${page}`;
+    const url = `${ import.meta.env.VITE_BASE_URL }/users?page=${ page }`;
     const res = await fetch(url);
     const data = await res.json();
 
-    console.log(data);
+    return (data.map(localhostUserToModel));
+
 }
 
