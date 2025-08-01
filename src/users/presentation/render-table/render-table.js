@@ -8,13 +8,13 @@ const createTable = () => {
     const tableHeaders = document.createElement('thead');
     tableHeaders.innerHTML = `
     <tr>
-        <th>#ID</th>
-        <th>Balance</th>
-        <th>FirstName</th>
-        <th>LastName</th>
-        <th>Active</th>
-        <th>Avatar</th>
-        <th>Actions</th>
+        <th> # ID </th>
+        <th> Balance </th>
+        <th> First Name </th>
+        <th> Last Name </th>
+        <th> Active </th>
+        <th> Avatar </th>
+        <th> Actions </th>
     </tr>
     `
     const tableBody = document.createElement('tbody');
@@ -43,9 +43,9 @@ export const RenderTable = (element) => {
         <td>${user.isActive}</td>
         <td>${user.avatar}</td>
         <td>
-        <a href="#/" data-id"${user.id}">Select</a>
+        <a href="#/" data-id"${user.id}"> Select </a>
         |
-        <a href="#/" data-id"${user.id}">Delete</a>
+        <a href="#/" data-id"${user.id}"> Delete </a>
         </td>
     </tr>`
     });
