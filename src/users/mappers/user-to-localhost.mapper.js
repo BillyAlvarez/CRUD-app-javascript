@@ -12,13 +12,13 @@ export const usersModelToLocalhost = ( user )=> {
     } = user;
 
     return {
-        avatar : 'testing',
+        avatar ,
         balance,
         first_name : firstName,
         last_name : lastName,
         isActive,
         id,
-        gender : '?'
+        gender ,
     }
 }
 
