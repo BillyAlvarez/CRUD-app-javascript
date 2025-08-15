@@ -14,7 +14,7 @@ export const hideModal = () =>{
     form?.reset();
 }
 
-export const renderModal = ( element ) => {
+export const renderModal = ( element, callback ) => {
     if ( modal ) return;
 
     modal = document.createElement( 'div' );
@@ -28,23 +28,24 @@ export const renderModal = ( element ) => {
        }
     });
 
-    form.addEventListener( 'submit', ( event ) => {
+    form.addEventListener( 'submit', async (event) => {
         event.preventDefault();
 
-        const formData = new FormData( form );
+        const formData = new FormData(form);
         const userLike = {};
 
-        for ( const [key , value] of formData){
-            if ( key === 'balance' ) {
-               userLike[key] = +value;
-               continue;
+        for (const [key, value] of formData) {
+            if (key === 'balance') {
+                userLike[key] = +value;
+                continue;
             }
-            if ( key === 'isActive' ) {
-               userLike[key] = ( value === 'on' ) ? true : false;
-               continue;
+            if (key === 'isActive') {
+                userLike[key] = (value === 'on') ? true : false;
+                continue;
             }
             userLike[key] = value;
         }
+        await callback( userLike );
         hideModal();
     })
 

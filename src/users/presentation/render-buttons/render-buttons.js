@@ -1,6 +1,6 @@
 import './render-buttons.css'
 import usersStore from "../../store/users-store.js";
-import { RenderTable } from '../render-table/render-table.js';
+import { renderTable } from '../render-table/render-table.js';
 
 export const renderButtons = ( element ) => {
 
@@ -19,13 +19,13 @@ export const renderButtons = ( element ) => {
     nextButton.addEventListener('click', async()=> {
         await usersStore.loadNextPage();
         currentPageLabel.innerText = usersStore.getCurrentPage();
-        RenderTable( element );
+        renderTable( element );
     })
 
     prevButton.addEventListener('click', async()=> {
         await usersStore.loadPrevPage();
         currentPageLabel.innerText = usersStore.getCurrentPage();
-        RenderTable( element );
+        renderTable( element );
     })
 
 }

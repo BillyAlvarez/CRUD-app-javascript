@@ -23,7 +23,7 @@ const createTable = () => {
 }
 
 
-export const RenderTable = (element) => {
+export const renderTable = (element) => {
 
     const users = usersStore.getUsers();
     if (!table) {

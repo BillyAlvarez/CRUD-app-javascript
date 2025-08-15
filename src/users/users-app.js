@@ -1,8 +1,9 @@
 import usersStore from "./store/users-store.js";
-import {RenderTable} from "./presentation/render-table/render-table.js";
+import {renderTable} from "./presentation/render-table/render-table.js";
 import {renderButtons} from "./presentation/render-buttons/render-buttons.js";
 import {renderAddButton} from "./presentation/render-add-button/render-add-button.js";
 import {renderModal} from "./presentation/render-modal/render-modal.js";
+import {saveUser} from "./use-cases/save-user.js";
 
 
 export const usersApp = async ( element )=> {
@@ -10,9 +11,13 @@ export const usersApp = async ( element )=> {
     await usersStore.loadNextPage();
     element.innerHTML = '';
 
-    RenderTable( element );
+    renderTable( element );
     renderButtons( element );
     renderAddButton( element );
-    renderModal( element );
+    renderModal( element, async(userLike)=> {
+        const user = await saveUser(userLike);
+        userStore.onUserChanged(user);
+        renderTable();
+    } );
 }
 
