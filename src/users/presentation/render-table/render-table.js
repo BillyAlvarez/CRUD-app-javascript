@@ -1,5 +1,6 @@
 import './render-table.css'
 import usersStore from "../../store/users-store.js";
+import {showModal} from "../render-modal/render-modal.js";
 
 let table;
 
@@ -22,20 +23,28 @@ const createTable = () => {
     return table;
 }
 
+const tableSelectListener = ( event ) => {
+    const element = event.target.closest('.select-user');
+    if (!element) return;
+    const id = element.getAttribute('data-id');
+    console.log(id)
+    showModal(id)
+}
 
-export const renderTable = (element) => {
+    export const renderTable = (element) => {
 
-    const users = usersStore.getUsers();
-    if (!table) {
-        table = createTable();
-        element.append(table);
+        const users = usersStore.getUsers();
+        if (!table) {
+            table = createTable();
+            element.append(table);
 
-        //TODO Listeners a la table
-    }
+            //TODO Listeners a la table\
+            table.addEventListener('click', tableSelectListener)
+        }
 
-    let tableHTML = ''
-    users.forEach(user => {
-        tableHTML += `<tr>
+        let tableHTML = ''
+        users.forEach(user => {
+            tableHTML += `<tr>
         <td>${user.id}</td>
         <td>${user.balance}</td>
         <td>${user.firstName}</td>
@@ -43,12 +52,12 @@ export const renderTable = (element) => {
         <td>${user.isActive}</td>
         <td>${user.avatar}</td>
         <td>
-        <a href="#/" data-id"${user.id}"> Select </a>
+        <a href="#/" class="select-user" data-id="${user.id}"> Select </a>
         |
-        <a href="#/" data-id"${user.id}"> Delete </a>
+        <a href="#/" class="delete-user" data-id="${user.id}"> Delete </a>
         </td>
     </tr>`
-    });
-    table.querySelector('tbody').innerHTML = tableHTML;
+        });
+        table.querySelector('tbody').innerHTML = tableHTML;
 
-}
+    }

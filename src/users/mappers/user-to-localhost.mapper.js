@@ -8,7 +8,7 @@ export const usersModelToLocalhost = ( user )=> {
         lastName,
         isActive,
         id,
-        gender
+        gender,
     } = user;
 
     return {
